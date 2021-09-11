@@ -1,0 +1,17 @@
+#!/bin/bash
+
+repo_home=~/dotfiles
+cd $repo_home
+git checkout master
+git pull origin master
+
+echo ""
+ls -al | grep "^-" | awk '{print $9}' | grep "^\." | while read file
+do
+	if [[ "$file" == ".gitignore" ]]; then
+		continue
+	fi
+	echo "creating symlink: ~/$file --> $repo_home/$file"
+	ln -s $repo_home/$file ~/$file
+	echo ""
+done

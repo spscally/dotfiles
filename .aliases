@@ -1,1 +1,37 @@
+alias di='docker images'
+alias drmi='docker rmi -f $(docker images -a -q)'
+
+alias g='git'
+alias gb='git branch'
+alias gbd='git branch -D'
+alias gc='git commit -m'
+alias gcm='git checkout main'
+alias gck='git checkout'
+alias gd='git diff'
+alias gmm='git merge main'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gpm='git pull origin main'
+alias gs='git status'
+
 alias python='python3'
+
+alias rl='exec -l $SHELL'
+
+alias v='vim ~/.vimrc'
+
+alias z='vim ~/.zshrc'
+
+alias ztop="history 1 | awk '{\$1=\"\";print substr(\$0,2)}' | sort | uniq -c | sort -nr | head -n"
+
+gcj () {
+	git branch | grep $1 | xargs git checkout
+}
+
+grb () {
+    BRANCH=$(git branch --show-current)
+    git checkout main
+    git pull --ff-only
+    git checkout $BRANCH
+    git rebase main
+}

@@ -28,10 +28,3 @@ gcj () {
 	git branch | grep $1 | xargs git checkout
 }
 
-grb () {
-    BRANCH=$(git branch --show-current)
-    git checkout main
-    git pull --ff-only
-    git checkout $BRANCH
-    git rebase main
-}
